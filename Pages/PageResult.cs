@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.IO;
 
 namespace aspnetcore_cookies_options.Pages
@@ -24,6 +25,8 @@ namespace aspnetcore_cookies_options.Pages
                 case PageEnum.Forbidden:
                     file = Path.Combine(file, "403.html");
                     break;
+                default:
+                    throw new InvalidEnumArgumentException(nameof(PageResult) + ".@enum", (int)@enum, typeof(PageEnum));
             }
             return file;
         }
