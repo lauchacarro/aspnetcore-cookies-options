@@ -14,20 +14,13 @@ namespace aspnetcore_cookies_options.Pages
         private static string ResolveFile(PageEnum @enum)
         {
             string file = Path.Combine(Directory.GetCurrentDirectory(), "Pages", "Html");
-            switch (@enum)
+            file = @enum switch
             {
-                case PageEnum.Index:
-                    file = Path.Combine(file, "index.html");
-                    break;
-                case PageEnum.SeeCookie:
-                    file = Path.Combine(file, "seecookies.html");
-                    break;
-                case PageEnum.Forbidden:
-                    file = Path.Combine(file, "403.html");
-                    break;
-                default:
-                    throw new InvalidEnumArgumentException(nameof(PageResult) + ".@enum", (int)@enum, typeof(PageEnum));
-            }
+                PageEnum.Index => Path.Combine(file, "index.html"),
+                PageEnum.SeeCookie => Path.Combine(file, "seecookies.html"),
+                PageEnum.Forbidden => Path.Combine(file, "403.html"),
+                _ => throw new InvalidEnumArgumentException(nameof(PageResult) + ".@enum", (int)@enum, typeof(PageEnum)),
+            };
             return file;
         }
 
