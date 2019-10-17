@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace aspnetcore_cookies_options.Controllers
 {
@@ -14,7 +13,7 @@ namespace aspnetcore_cookies_options.Controllers
     public class LoginController : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> Login([FromForm] LoginModel model)
+        public IActionResult Login([FromForm] LoginModel model)
         {
 
             IActionResult result = null;
