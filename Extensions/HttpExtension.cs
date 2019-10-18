@@ -7,13 +7,13 @@ namespace aspnetcore_cookies_options.Extensions
     public static class HttpExtension
     {
 
-        public static HttpRequest ExistTokenCookie(this HttpRequest request, Action<string> callback)
+        public static HttpRequest IfExistTokenCookie(this HttpRequest request, Action<string> callback)
         {
             if (request.Cookies.TryGetValue(Constants.COOKIENAME, out string value))
                 callback(value);
             return request;
         }
-        public static HttpRequest NoExistTokenCookie(this HttpRequest request, Action callback)
+        public static HttpRequest IfNoExistTokenCookie(this HttpRequest request, Action callback)
         {
             if (!request.Cookies.TryGetValue(Constants.COOKIENAME, out string _))
                 callback();

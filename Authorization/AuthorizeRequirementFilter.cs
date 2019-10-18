@@ -10,7 +10,7 @@ namespace aspnetcore_cookies_options.Authorization
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            context.HttpContext.Request.ExistTokenCookie(token =>
+            context.HttpContext.Request.IfExistTokenCookie(token =>
             {
                 LoginModel model = System.Text.Json.JsonSerializer.Deserialize<LoginModel>(token);
 
@@ -23,7 +23,7 @@ namespace aspnetcore_cookies_options.Authorization
                 });
 
             })
-            .NoExistTokenCookie(() =>
+            .IfNoExistTokenCookie(() =>
             {
                 context.Result = new PageResult(PageEnum.Forbidden);
             });
